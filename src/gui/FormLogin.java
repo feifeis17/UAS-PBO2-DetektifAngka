@@ -1,9 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package gui;
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 /**
  *
  * @author feisa
@@ -109,6 +108,11 @@ public class FormLogin extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(251, 243, 223), 1, true));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel2MouseClicked(evt);
+            }
+        });
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/icons8-circled-a-50.png"))); // NOI18N
@@ -146,6 +150,11 @@ public class FormLogin extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(251, 243, 223), 1, true));
         jPanel5.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel5MouseClicked(evt);
+            }
+        });
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/icons8-circled-g-50.png"))); // NOI18N
@@ -181,6 +190,11 @@ public class FormLogin extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(251, 243, 223), 1, true));
         jPanel6.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel6MouseClicked(evt);
+            }
+        });
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/icons8-circled-m-50.png"))); // NOI18N
@@ -218,6 +232,11 @@ public class FormLogin extends javax.swing.JFrame {
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(251, 243, 223), 1, true));
         jPanel7.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel7MouseClicked(evt);
+            }
+        });
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/icons8-circled-c-50.png"))); // NOI18N
@@ -263,12 +282,19 @@ public class FormLogin extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/icons8-magnifying-glass-30.png"))); // NOI18N
         jButton1.setText("Masuk Markas");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel3)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -284,14 +310,11 @@ public class FormLogin extends javax.swing.JFrame {
                         .addGap(122, 122, 122)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField1)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE))))
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel7)))
                 .addContainerGap(30, Short.MAX_VALUE))
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel3)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -354,6 +377,56 @@ public class FormLogin extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
+        jTextField1.setText("Ayumi");
+    }//GEN-LAST:event_jPanel2MouseClicked
+
+    private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
+        jTextField1.setText("Genta");
+    }//GEN-LAST:event_jPanel5MouseClicked
+
+    private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
+        jTextField1.setText("Mitsuhiko");
+    }//GEN-LAST:event_jPanel6MouseClicked
+
+    private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
+        jTextField1.setText("Conan");
+    }//GEN-LAST:event_jPanel7MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+    String inputUser = jTextField1.getText();
+    if (inputUser.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Silakan pilih avatar atau ketik ID/Nama terlebih dahulu!");
+        return;
+    }
+    Connection conn = config.koneksi.koneksiDB();
+    String sql = "SELECT * FROM hak_akses WHERE id_pengguna = ? OR nama = ?";
+    PreparedStatement pst = conn.prepareStatement(sql);
+    pst.setString(1, inputUser);
+    pst.setString(2, inputUser);
+    ResultSet rs = pst.executeQuery();
+    if (rs.next()) {
+        int level = rs.getInt("level");
+        String namaPengguna = rs.getString("nama");
+        if (level == 1) {
+            JOptionPane.showMessageDialog(this, "Selamat datang Mentor " + namaPengguna + "!");
+            new MenuLevel1().setVisible(true);
+        } else if (level == 2) {
+            JOptionPane.showMessageDialog(this, "Selamat datang Detektif " + namaPengguna + "!");
+            new MenuLevel2().setVisible(true);
+        }
+        this.dispose();
+        
+    } else {
+        JOptionPane.showMessageDialog(this, "Akses Ditolak! ID atau Nama tidak ditemukan.");
+    }
+
+} catch (Exception e) {
+    JOptionPane.showMessageDialog(this, "Terjadi kesalahan koneksi: " + e.getMessage());
+}
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
