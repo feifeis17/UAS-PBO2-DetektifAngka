@@ -16,6 +16,9 @@ public class FormLogin extends javax.swing.JFrame {
         initComponents();
         jTextField1.putClientProperty("JComponent.roundRect", true);
         jButton1.putClientProperty("JButton.buttonType", "roundRect");
+        this.pack(); 
+        this.setResizable(false); 
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -82,7 +85,7 @@ public class FormLogin extends javax.swing.JFrame {
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel18)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(602, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,6 +274,7 @@ public class FormLogin extends javax.swing.JFrame {
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/icons8-magnifying-60.png"))); // NOI18N
 
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -292,13 +296,19 @@ public class FormLogin extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel3)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel7)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -307,14 +317,11 @@ public class FormLogin extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(122, 122, 122)
+                        .addGap(88, 88, 88)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField1)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel7)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(103, 103, 103))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -360,9 +367,7 @@ public class FormLogin extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -395,37 +400,41 @@ public class FormLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel7MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-    String inputUser = jTextField1.getText();
-    if (inputUser.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Silakan pilih avatar atau ketik ID/Nama terlebih dahulu!");
-        return;
-    }
-    Connection conn = config.koneksi.koneksiDB();
-    String sql = "SELECT * FROM hak_akses WHERE id_pengguna = ? OR nama = ?";
-    PreparedStatement pst = conn.prepareStatement(sql);
-    pst.setString(1, inputUser);
-    pst.setString(2, inputUser);
-    ResultSet rs = pst.executeQuery();
-    if (rs.next()) {
-        int level = rs.getInt("level");
-        String namaPengguna = rs.getString("nama");
-        if (level == 1) {
-            JOptionPane.showMessageDialog(this, "Selamat datang Mentor " + namaPengguna + "!");
-            new MenuLevel1().setVisible(true);
-        } else if (level == 2) {
-            JOptionPane.showMessageDialog(this, "Selamat datang Detektif " + namaPengguna + "!");
-            new MenuLevel2().setVisible(true);
-        }
-        this.dispose();
-        
-    } else {
-        JOptionPane.showMessageDialog(this, "Akses Ditolak! ID atau Nama tidak ditemukan.");
-    }
+try {
+            String inputUser = jTextField1.getText().trim();
+            
+            if (inputUser.isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Silakan pilih avatar atau ketik ID/Nama terlebih dahulu!");
+                return;
+            }
+            
+            java.sql.Connection conn = config.koneksi.koneksiDB();
+            String sql = "SELECT * FROM hak_akses WHERE id_pengguna = ? OR nama = ?";
+            java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setString(1, inputUser);
+            pst.setString(2, inputUser);
+            
+            java.sql.ResultSet rs = pst.executeQuery();
+            
+            if (rs.next()) {
+                int level = rs.getInt("level");
+                String namaPengguna = rs.getString("nama");
+                String idPengguna = rs.getString("id_pengguna"); // Mengambil ID dari database
+                
+                if (level == 1) {
+                    new dashboardlvl1(idPengguna, namaPengguna).setVisible(true);
+                } else if (level == 2) {
+                    new dashboardlvl2(idPengguna, namaPengguna).setVisible(true);
+                }
+                this.dispose();
+                
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "Akses Ditolak! ID atau Nama tidak ditemukan.");
+            }
 
-} catch (Exception e) {
-    JOptionPane.showMessageDialog(this, "Terjadi kesalahan koneksi: " + e.getMessage());
-}
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Terjadi kesalahan koneksi: " + e.getMessage());
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
